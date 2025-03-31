@@ -3,6 +3,8 @@ from constants import *
 
 def main():
     pygame.init()
+    clock = pygame.time.Clock()
+    dt = 0
     screen = pygame.display.set_mode((SCREEN_WIDTH,SCREEN_HEIGHT))
 
 
@@ -13,9 +15,11 @@ def main():
 
         pygame.Surface.fill(screen,(0,0,0,1))
         pygame.display.flip()
+        clock.tick(60)
+        dt = pygame.time.Clock.get_time(clock) / 1000
 
 
 if __name__ == "__main__":
-    print(main())
+    main()
 
 
