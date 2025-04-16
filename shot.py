@@ -12,5 +12,5 @@ class Shot(CircleShape):
     def update(self,dt):
         self.position += self.velocity * dt
 
-    def within_bounds(shot):
-        return 0 <= shot.position.x <= SCREEN_WIDTH and 0 <= shot.position.y <= SCREEN_HEIGHT
+    def within_bounds(self):
+        return 0 <= self.position.x <= SCREEN_WIDTH and 0 <= self.position.y <= SCREEN_HEIGHT
