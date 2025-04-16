@@ -24,6 +24,10 @@ def main():
     Shot.containers = (shots, updateable, drawable)
     player = Player(x,y,shots = shots)
     field = AsteroidField()
+    textx = 10
+    texty = 10
+    score_value=0
+    font = pygame.font.Font('freesansbold.ttf',32)
 
     while True:
         for event in pygame.event.get():
@@ -33,6 +37,10 @@ def main():
 
 
         pygame.Surface.fill(screen,(0,0,0,1))
+        score = font.render(f"Score: {score_value}",True,(255,255,255))
+        screen.blit(score,(textx,texty))
+        
+        
 
         updateable.update(dt)
 
@@ -40,15 +48,13 @@ def main():
             if not Shot.within_bounds(shot):
                 shot.kill()
 
-        print(f"Number of Asteroids: {len(asteroids)}")
         for asteroid in asteroids:
             check = asteroid.collision(player)
             if check == True:
                 sys.exit("Game over!")
-            print(f"Number of shots: {len(shots)}")
             for shot in shots:
                 if asteroid.collision(shot):
-                    print("Hit detected!")
+                    score_value+=50
                     asteroid.split(asteroid)
                     shot.kill()
 
